@@ -48,8 +48,7 @@ let
           name = "nvidia-x11-${version}-nixGL";
           inherit version;
           src = let
-            url =
-              "https://download.nvidia.com/XFree86/Linux-x86_64/${version}/NVIDIA-Linux-x86_64-${version}.run";
+            url = "https://fr.download.nvidia.com/tesla/460.91.03/NVIDIA-Linux-x86_64-460.91.03.run";
           in if sha256 != null then
             fetchurl { inherit url sha256; }
           else
@@ -100,6 +99,7 @@ let
               '':''${NVIDIA_JSON32[*]}''
               }"''${__EGL_VENDOR_LIBRARY_FILENAMES:+:$__EGL_VENDOR_LIBRARY_FILENAMES}"''
             }
+            export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
               ${
                 lib.optionalString (api == "Vulkan")
